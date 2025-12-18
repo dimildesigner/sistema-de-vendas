@@ -1,172 +1,70 @@
-# Produto parte 1 - nome do arquivo: produto.py
+from decimal import Decimal
 
 class Produto:
+    def __init__(self,
+                 produto_id: int = None,
+                 nome: str = None,
+                 descricao: str = None,
+                 preco: Decimal = Decimal("0.00"),
+                 quantidade_estoque: int = 0,
+                 categoria_id: int = None):
+        self._produto_id = produto_id
+        self._nome = nome
+        self._descricao = descricao
+        self._preco = preco
+        self._quantidade_estoque = quantidade_estoque
+        self._categoria_id = categoria_id
 
-    def __init__(self, codigo, nome, preco, quantidade):
-        # Atributos privados
-        self.__codigo = codigo
-        self.__nome = nome
-        self.__preco = preco
-        self.__quantidade = quantidade
-        
-    # --- Propriedades (Getters e Setters) ---
-
+    # ProdutoID
     @property
-    def codigo(self):
-        return self.__codigo
-    
-    @codigo.setter 
-    def codigo(self, cod):
+    def produto_id(self) -> int:
+        return self._produto_id
 
-        if isinstance(cod, int) and cod >= 0:
-            self.__codigo = cod
-        
+    @produto_id.setter
+    def produto_id(self, value: int) -> None:
+        self._produto_id = value
 
+    # Nome
     @property
-    def nome(self):
-        return self.__nome
-    
+    def nome(self) -> str:
+        return self._nome
+
     @nome.setter
-    def nome(self, novo_nome):
-        self.__nome = novo_nome
+    def nome(self, value: str) -> None:
+        self._nome = value
 
-
+    # Descricao
     @property
-    def preco(self):
-        return self.__preco
-    
+    def descricao(self) -> str:
+        return self._descricao
+
+    @descricao.setter
+    def descricao(self, value: str) -> None:
+        self._descricao = value
+
+    # Preco
+    @property
+    def preco(self) -> Decimal:
+        return self._preco
+
     @preco.setter
-    def preco(self, novo_preco):
+    def preco(self, value: Decimal) -> None:
+        self._preco = value
 
-        if isinstance(novo_preco, (float, int)) and novo_preco >= 0:
-            self.__preco = novo_preco
-        else:
-            print("Erro: O preÃƒÂ§o deve ser um valor positivo.")
-
-
+    # QuantidadeEstoque
     @property
-    def quantidade(self):
-        return self.__quantidade
-    
-    @quantidade.setter
-    def quantidade(self, nova_quantidade):
+    def quantidade_estoque(self) -> int:
+        return self._quantidade_estoque
 
-        if isinstance(nova_quantidade, int) and nova_quantidade >= 0:
-            self.__quantidade = nova_quantidade
-        else:
-            print("Erro: A quantidade deve ser um nÃƒÂºmero inteiro nÃƒÂ£o negativo.")
-        
+    @quantidade_estoque.setter
+    def quantidade_estoque(self, value: int) -> None:
+        self._quantidade_estoque = value
 
-    # --- MÃƒÂ©todos de NegÃƒÂ³cio ---
+    # CategoriaID
+    @property
+    def categoria_id(self) -> int:
+        return self._categoria_id
 
-    def vender(self, quantidade):
-        # ValidaÃƒÂ§ÃƒÂ£o mais robusta na venda
-        if not isinstance(quantidade, int) or quantidade <= 0:
-            print('Erro: A quantidade de venda deve ser um nÃƒÂºmero inteiro positivo.')
-            return
-            
-        if self.__quantidade >= quantidade:
-            self.__quantidade -= quantidade
-            print(f'Venda de {quantidade} unidades de {self.nome} registrada. Estoque atual: {self.__quantidade}')
-        else:
-            print(f'ERRO: Quantidade ({quantidade}) superior ao estoque atual ({self.__quantidade}).')
-
-
-
-    def valor_total_estoque(self): 
-        try:
-
-            return self.__preco * self.__quantidade
-             
-        except Exception as e:
-            # Este bloco serÃƒÂ¡ acionado se houver um erro de conversÃƒÂ£o (o que nÃƒÂ£o deve acontecer se os setters funcionarem)
-            print('ERRO ao calcular valor total:', e)
-            return 0.0
-
-
-
-
-#  # Produto parte 1 - nome do arquivo: produto.py
-
-# class Produto:
-
-#     def __init__(self, codigo, nome, preco, quantidade):
-#         # Atributos privados
-#         self.__codigo = codigo
-#         self.__nome = nome
-#         self.__preco = preco
-#         self.__quantidade = quantidade
-        
-#     # --- Propriedades (Getters e Setters) ---
-
-#     @property
-#     def codigo(self):
-#         return self.__codigo
-    
-#     @codigo.setter 
-#     def codigo(self, cod):
-
-#         if isinstance(cod, int) and cod >= 0:
-#             self.__codigo = cod
-        
-
-#     @property
-#     def nome(self):
-#         return self.__nome
-    
-#     @nome.setter
-#     def nome(self, novo_nome):
-#         self.__nome = novo_nome
-
-
-#     @property
-#     def preco(self):
-#         return self.__preco
-    
-#     @preco.setter
-#     def preco(self, novo_preco):
-
-#         if isinstance(novo_preco, (float, int)) and novo_preco >= 0:
-#             self.__preco = novo_preco
-#         else:
-#             print("Erro: O preço deve ser um valor positivo.")
-
-
-#     @property
-#     def quantidade(self):
-#         return self.__quantidade
-    
-#     @quantidade.setter
-#     def quantidade(self, nova_quantidade):
-
-#         if isinstance(nova_quantidade, int) and nova_quantidade >= 0:
-#             self.__quantidade = nova_quantidade
-#         else:
-#             print("Erro: A quantidade deve ser um número inteiro não negativo.")
-        
-
-#     # --- Métodos de Negócio ---
-
-#     def vender(self, quantidade):
-#         # Validação mais robusta na venda
-#         if not isinstance(quantidade, int) or quantidade <= 0:
-#             print('Erro: A quantidade de venda deve ser um número inteiro positivo.')
-#             return
-            
-#         if self.__quantidade >= quantidade:
-#             self.__quantidade -= quantidade
-#             print(f'Venda de {quantidade} unidades de {self.nome} registrada. Estoque atual: {self.__quantidade}')
-#         else:
-#             print(f'ERRO: Quantidade ({quantidade}) superior ao estoque atual ({self.__quantidade}).')
-
-
-
-#     def valor_total_estoque(self): 
-#         try:
-
-#             return self.__preco * self.__quantidade
-             
-#         except Exception as e:
-#             # Este bloco será acionado se houver um erro de conversão (o que não deve acontecer se os setters funcionarem)
-#             print('ERRO ao calcular valor total:', e)
-#             return 0.0
+    @categoria_id.setter
+    def categoria_id(self, value: int) -> None:
+        self._categoria_id = value
