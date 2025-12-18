@@ -54,7 +54,7 @@ def cadastrar_categoria():
 
 @app.route("/categorias/<int:id_categoria>", methods = ['DELETE'])
 def remover_categoria(id_categoria):
-    #objeto de comunicaÃ§Ã£o com o banco de dados
+    #objeto de comunicação com o banco de dados
     repo =CategoriaRepository()
     #removendo a categoria do banco de dados
     repo.delete(id_categoria)
