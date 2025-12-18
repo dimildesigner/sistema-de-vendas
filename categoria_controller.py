@@ -24,14 +24,14 @@ def listar_categorias():
 
     return jsonify(dados_retorno)
 
-@app.route("/categorias/<int:categoriaID>")
+@categoria_bp.route("/categorias/<int:categoriaID>")
 def buscar_por_id(categoriaID):
     repo = CategoriaRepository()
     categoria = repo.find_by_id(categoriaID)
     categoria_retorno = {"id":categoria[0], "nome":categoria[1], "descricao":categoria[2]}
     return jsonify(categoria_retorno)
 
-@app.route("/categorias", methods = ['POST'])
+@categoria_bp.route("/categorias", methods = ['POST'])
 def cadastrar_categoria():
     repo = CategoriaRepository()
     # recebendo os dados via protocolo POST http
@@ -52,7 +52,7 @@ def cadastrar_categoria():
             }), 201
 
 
-@app.route("/categorias/<int:id_categoria>", methods = ['DELETE'])
+@categoria_bp.route("/categorias/<int:id_categoria>", methods = ['DELETE'])
 def remover_categoria(id_categoria):
     #objeto de comunicação com o banco de dados
     repo =CategoriaRepository()
